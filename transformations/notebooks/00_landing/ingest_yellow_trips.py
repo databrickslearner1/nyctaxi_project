@@ -43,9 +43,9 @@ except:
         download_file(url, dir_path, local_path)
         
         # Set continue_downstream to yes if the file was loaded
-        set_continue_downstream("yes")
+        dbutils.jobs.taskValues.set(key="continue_downstream", value="yes")
         print("File succesfully uploaded in current run")
     except Exception as e:
         # Set continue downstream to no if the file was not loaded
-        set_continue_downstream("no")
+        dbutils.jobs.taskValues.set(key="continue_downstream", value="no")
         print(f"File download failed: {str(e)}")
