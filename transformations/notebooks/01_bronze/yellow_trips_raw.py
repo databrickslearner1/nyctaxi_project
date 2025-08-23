@@ -11,6 +11,7 @@ from pyspark.sql.functions import current_timestamp
 from dateutil.relativedelta import relativedelta
 from datetime import date
 from modules.utils.date_utils import get_target_yyyymm
+from modules.transformations.metadata import add_processed_timestamp
 
 # COMMAND ----------
 
@@ -23,7 +24,7 @@ df = spark.read.format("parquet").load(f"/Volumes/nyctaxi/00_landing/data_source
 # COMMAND ----------
 
 # Add a column to capture when the data was processed
-df = df.withColumn("processed_timestamp", current_timestamp())
+df = add_processed_timestamp(df)
 
 # COMMAND ----------
 

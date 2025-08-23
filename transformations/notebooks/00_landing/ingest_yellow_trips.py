@@ -13,7 +13,6 @@ from datetime import datetime
 from datetime import date, datetime, timezone
 from dateutil.relativedelta import relativedelta
 from modules.utils.date_utils import get_target_yyyymm
-from modules.data_loader.file_check import file_exists
 from modules.data_loader.file_downloader import download_file
 
 # Obtains the year-month for 2 months prior to the current month in yyyy-MM format
@@ -27,7 +26,7 @@ local_path = f"{dir_path}/yellow_tripdata_{formatted_date}.parquet"
 
 try:
     # Check if the file already exists
-    file_exists(local_path)
+    dbutils.fs.ls(local_path)
 
     # If the file already exists then set continue_downstream to no
     set_continue_downstream("no")
