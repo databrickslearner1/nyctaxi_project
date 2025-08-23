@@ -29,7 +29,7 @@ try:
     dbutils.fs.ls(local_path)
 
     # If the file already exists then set continue_downstream to no
-    set_continue_downstream("no")
+    dbutils.jobs.taskValues.set(key="continue_downstream", value="no")
     print("File already downloaded, aborting downstream tasks")
 except:
     try:
