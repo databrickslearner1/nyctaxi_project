@@ -28,5 +28,5 @@ df = df.withColumn("year_month", date_format("tpep_pickup_datetime", "yyyy-MM"))
 df.write.\
     format("parquet").\
     partitionBy("vendor", "year_month").\
-    option("path", "abfss://nyctaxi-yellow@nyctaxistorage639.dfs.core.windows.net/nyctaxi/yellow_trips_export").\
+    option("path", "abfss://nyctaxi-yellow@nyctaxistorage639.dfs.core.windows.net/yellow_trips_export").\
     saveAsTable("nyctaxi.04_export.yellow_trips_export")
