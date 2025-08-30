@@ -8,13 +8,15 @@ from pyspark.sql.functions import date_format
 two_months_ago_start = get_month_start_n_months_ago(2)
 
 # COMMAND ----------
+
 # Read the 'yellow_trips_enriched' table from the 'nyctaxi.02_silver' schema
 # and filter to only include trips with a pickup datetime
 # later than the start date from two months ago
 
-df = spark.read.table("nyctaxi.01_bronze.yellow_trips_enriched").filter(f"tpep_pickup_datetime > '{two_months_ago_start}'")
+df = spark.read.table("nyctaxi.02_silver.yellow_trips_enriched").filter(f"tpep_pickup_datetime > '{two_months_ago_start}'")
 
 # COMMAND ----------
+
 # Add a year_month column, formated as yyyy-MM
 
 df = df.withColumn("year_month", date_format("tpep_pickup_datetime", "yyyy-MM"))
